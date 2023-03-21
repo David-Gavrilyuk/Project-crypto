@@ -1,0 +1,167 @@
+/* Parallax header */
+#parallaxHeader {
+  background: url("../img/parallax.jpg") fixed center -150px / cover;
+  border: 3px solid #000;
+  height: 250px;
+}
+
+#parallaxHeader > h1 {
+  color: rgb(225, 0, 0);
+  font-weight: bold;
+  padding-top: 60px;
+  text-shadow: 5px 5px 5px #000;
+}
+
+#parallaxHeader > h3 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* tab navigation */
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+/* About tab */
+.aboutInfo,
+h3 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.aboutInfo > h1.aboutInfo,
+h3.aboutInfo {
+  text-decoration: underline double;
+}
+
+#aboutIMG {
+  height: 400px;
+}
+
+/* Coin cards */
+.card {
+  width: 320px;
+}
+
+.cardBox {
+  border: 2px solid black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 10px;
+}
+
+.cardBox:hover {
+  box-shadow: 0 0 10px #000;
+}
+
+.card-body {
+  height: 40px;
+  margin-bottom: 25px;
+}
+
+.card-header {
+  height: 55px;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.coinInfo {
+  display: none;
+}
+
+#cardsCon {
+  justify-content: center;
+}
+
+/* get more info gif */
+#loading {
+  height: 50px;
+  width: 50px;
+}
+
+/* Modal */
+.modal-body {
+  text-align: center;
+}
+
+#modalCoins {
+  display: flex;
+  justify-content: space-around;
+}
+
+#currentCoins,
+#addedCoin {
+  text-align: left;
+}
+
+#btn {
+  margin-left: auto;
+}
+
+/* The switch - the box around the slider 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 23px;
+}
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+
+.slider.round {
+  border-radius: 23px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
