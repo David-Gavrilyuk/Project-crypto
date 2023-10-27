@@ -1,99 +1,119 @@
-// TO BE IMPLEMENTED //
+let chart = null;
+let dataPoints = {};
+let dataSeriesVisibility = JSON.parse(localStorage.getItem("dataSeriesVisibility")) || {};
+let interval = null; // Initialize the interval variable to null.
 
-// const coinGraph = () => {
-//   var options = {
-//     animationEnabled: true,
-//     theme: "light2",
-//     title: {
-//       text: "BTC, to USD",
-//     },
-//     axisX: {
-//       valueFormatString: `${time.getHours()}:${time.getMinutes()}`,
-//     },
-//     axisY: {
-//       title: "Coin value",
-//       suffix: "$",
-//       minimum: 0,
-//       maximum: 10000,
-//       interval: 1000,
-//     },
-//     toolTip: {
-//       shared: true,
-//     },
-//     legend: {
-//       cursor: "pointer",
-//       verticalAlign: "top",
-//       fontSize: 22,
-//       fontColor: "dimGrey",
-//       itemclick: toggleDataSeries,
-//     },
-//     data: [
-//       {
-//         type: "line",
-//         showInLegend: true,
-//         name: `${liveReportCoins[0]}`,
-//         markerType: "square",
-//         xValueFormatString: "DD MMM, YYYY",
-//         color: "#F08080",
-//         yValueFormatString: "#,##0K",
-//         dataPoints: [
-//           { x: new Date(2017, 10, 1), y: 63 },
-//           { x: new Date(2017, 10, 2), y: 69 },
-//           { x: new Date(2017, 10, 3), y: 65 },
-//           { x: new Date(2017, 10, 4), y: 70 },
-//           { x: new Date(2017, 10, 5), y: 71 },
-//           { x: new Date(2017, 10, 6), y: 65 },
-//           { x: new Date(2017, 10, 7), y: 73 },
-//           { x: new Date(2017, 10, 8), y: 96 },
-//           { x: new Date(2017, 10, 9), y: 84 },
-//           { x: new Date(2017, 10, 10), y: 85 },
-//           { x: new Date(2017, 10, 11), y: 86 },
-//           { x: new Date(2017, 10, 12), y: 94 },
-//           { x: new Date(2017, 10, 13), y: 97 },
-//           { x: new Date(2017, 10, 14), y: 86 },
-//           { x: new Date(2017, 10, 15), y: 89 },
-//         ],
-//       },
-//       {
-//         type: "line",
-//         showInLegend: true,
-//         name: "Actual Sales",
-//         lineDashType: "dash",
-//         yValueFormatString: "#,##0K",
-//         dataPoints: [
-//           { x: new Date(2017, 10, 1), y: 60 },
-//           { x: new Date(2017, 10, 2), y: 57 },
-//           { x: new Date(2017, 10, 3), y: 51 },
-//           { x: new Date(2017, 10, 4), y: 56 },
-//           { x: new Date(2017, 10, 5), y: 54 },
-//           { x: new Date(2017, 10, 6), y: 55 },
-//           { x: new Date(2017, 10, 7), y: 54 },
-//           { x: new Date(2017, 10, 8), y: 69 },
-//           { x: new Date(2017, 10, 9), y: 65 },
-//           { x: new Date(2017, 10, 10), y: 66 },
-//           { x: new Date(2017, 10, 11), y: 63 },
-//           { x: new Date(2017, 10, 12), y: 67 },
-//           { x: new Date(2017, 10, 13), y: 66 },
-//           { x: new Date(2017, 10, 14), y: 56 },
-//           { x: new Date(2017, 10, 15), y: 64 },
-//         ],
-//       },
-//     ],
-//   };
-//   $("#chartContainer").CanvasJSChart(options);
+const liveReportCoinsPrice = async () => {
+  console.log(liveReportCoins);
+  const currentTime = new Date().toLocaleTimeString();
+  const pricesAndTimes = await Promise.all(
+    liveReportCoins.map(async ({ id }) => {
+      try {
+        const response = await $.get(`https://api.coingecko.com/api/v3/coins/${id}`);
+        const price = response.market_data.current_price.usd;
+        return { coinId: id, price, time: currentTime };
+      } catch (error) {
+        console.error(`Error fetching data for coin with ID ${id}: ${error}`);
+        return null;
+      }
+    })
+  );
 
-//   function toggleDataSeries(e) {
-//     if (typeof e.dataSeries.visible === "undefined" || e.dataSeries.visible) {
-//       e.dataSeries.visible = false;
-//     } else {
-//       e.dataSeries.visible = true;
-//     }
-//     e.chart.render();
-//   }
-// };
+  return pricesAndTimes.filter((data) => data !== null);
+};
 
-// let time = new Date();
-// time.getHours();
-// time.getMinutes();
-// time.getSeconds();
-// time.getMilliseconds();
+const coinGraph = () => {
+  const color = ["red", "blue", "green", "yellow", "pink"];
+  const dataSeries = [];
+
+  var options = {
+    zoomEnabled: true,
+    backgroundColor: "whitesmoke",
+    title: {
+      text: liveReportCoins.length ? "Share Value of Coins" : "No coins added to the live reports",
+    },
+    axisX: {
+      title: "Time",
+    },
+    axisY: {
+      title: "Coin Value",
+      prefix: "$",
+    },
+    toolTip: {
+      shared: true,
+    },
+    legend: {
+      cursor: "pointer",
+      verticalAlign: "top",
+      fontSize: 22,
+      fontColor: "dimGrey",
+      itemclick: toggleDataSeries,
+    },
+  };
+
+  chart = new CanvasJS.Chart("chartContainer", options);
+  chart.render();
+
+  function updateChart(pricesAndTimes) {
+    pricesAndTimes.forEach(({ coinId, time, price }) => {
+      if (!dataPoints[coinId]) {
+        dataPoints[coinId] = [];
+      }
+
+      const timeAsDate = new Date(`01/01/2023 ${time}`);
+      dataPoints[coinId].push({ x: timeAsDate, y: price });
+    });
+
+    // Clear and rebuild the data series
+    chart.options.data = liveReportCoins.map(({ name }, index) => {
+      const coinId = liveReportCoins[index].id;
+      const dataPointsArray = dataPoints[coinId] || [];
+
+      return {
+        type: "line",
+        showInLegend: true,
+        name,
+        markerType: "square",
+        xValueFormatString: "hh:mm:ss TT",
+        color: color[index],
+        yValueFormatString: "$####.00",
+        dataPoints: dataPointsArray,
+        visible: dataSeriesVisibility[index] !== undefined ? dataSeriesVisibility[index] : true,
+      };
+    });
+
+    chart.render();
+  }
+
+  function toggleDataSeries(e) {
+    const dataSeriesIndex = chart.options.data.indexOf(e.dataSeries);
+
+    if (typeof dataSeriesVisibility[dataSeriesIndex] === "undefined") {
+      dataSeriesVisibility[dataSeriesIndex] = true;
+    } else {
+      dataSeriesVisibility[dataSeriesIndex] = !dataSeriesVisibility[dataSeriesIndex];
+    }
+
+    e.dataSeries.visible = dataSeriesVisibility[dataSeriesIndex];
+    chart.render();
+
+    // Save dataSeriesVisibility to localStorage
+    localStorage.setItem("dataSeriesVisibility", JSON.stringify(dataSeriesVisibility));
+  }
+
+  // Call updateChart with empty data initially
+  updateChart([]);
+
+  // Clear the existing interval if it exists
+  if (interval) {
+    clearInterval(interval);
+  }
+
+  interval = setInterval(async () => {
+    const pricesAndTimes = await liveReportCoinsPrice();
+    updateChart(pricesAndTimes);
+  }, 2000);
+};
+
+// Call the coinGraph function to initialize the chart
+coinGraph();

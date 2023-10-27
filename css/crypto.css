@@ -1,25 +1,102 @@
 /* Parallax header */
-#parallaxHeader {
-  background: url("../img/parallax.jpg") fixed center -150px / cover;
-  border: 3px solid #000;
-  height: 250px;
-}
+/* #parallaxHeader {
+  background: url("../img/coin-shine1.gif") fixed center -350px / cover;
+  border: 1px solid #000;
+  height: 200px;
+} */
 
-#parallaxHeader > h1 {
+#cryptoHeader {
   color: rgb(225, 0, 0);
   font-weight: bold;
-  padding-top: 60px;
   text-shadow: 5px 5px 5px #000;
+  padding-left: 110px;
+  padding-top: 120px;
 }
 
-#parallaxHeader > h3 {
-  background-color: rgba(255, 255, 255, 0.5);
+/* Parallax header */
+/* Parallax header container */
+#parallaxHeader {
+  position: relative;
+  border: 1px solid #000;
+  height: 200px;
+  overflow: hidden;
+}
+
+/* Parallax container for video and overlay GIF */
+.parallax-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Video styling */
+#parallaxHeader video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform: translateY(-1%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Place video behind overlay GIF */
+}
+
+/* Overlay container for the sticky GIF */
+.overlay-container {
+  position: fixed;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overlay GIF styling */
+#overlayGif {
+  height: 100px;
+  object-fit: contain; /* You can adjust this as needed */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 868px) {
+  #cryptoHeader {
+    padding-left: 80px;
+    padding-top: 131px;
+  }
+  #overlayGif {
+    height: 70px;
+  }
+  .overlay-container {
+    top: 120px;
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  #cryptoHeader {
+    padding-left: 30px;
+    padding-top: 90px;
+  }
+  #overlayGif {
+    height: 24px;
+  }
+  .overlay-container {
+    top: 110px;
+  }
+  #parallaxHeader {
+    height: 140px;
+  }
+}
+
+/* navbar */
+.navbar {
+  margin-bottom: 10px;
 }
 
 /* tab navigation */
 .tab-content {
   display: flex;
   justify-content: center;
+  background-color: whitesmoke;
 }
 
 /* About tab */
@@ -50,6 +127,15 @@ h3.aboutInfo {
   flex-direction: column;
   height: 100%;
   margin: 10px;
+}
+
+.cardImage {
+  height: 40px;
+}
+
+.coinName {
+  margin-left: 10px;
+  margin-top: 7px;
 }
 
 .cardBox:hover {
@@ -88,6 +174,12 @@ h3.aboutInfo {
   text-align: center;
 }
 
+.modalImage {
+  height: 15px;
+  margin-bottom: 3px;
+  padding-right: 3px;
+}
+
 #modalCoins {
   display: flex;
   justify-content: space-around;
@@ -101,67 +193,3 @@ h3.aboutInfo {
 #btn {
   margin-left: auto;
 }
-
-/* The switch - the box around the slider 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 23px;
-}
-
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(16px);
-  -ms-transform: translateX(16px);
-  transform: translateX(16px);
-}
-
-
-.slider.round {
-  border-radius: 23px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-

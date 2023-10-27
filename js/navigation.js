@@ -6,7 +6,7 @@
 const homePage = () => {
   const homeInfo = `
     <div id="home" class="tab-pane active">
-      <div id="cardsCon" class="container d-flex d-inline-flex flex-wrap"></div>
+      <div id="cardsCon" class="container-fluid d-flex d-inline-flex flex-wrap width: 100%"></div>
     </div>
     `;
 
@@ -28,9 +28,7 @@ const homePage = () => {
 // -------------------------------------------------------------------------------------------------------------------------- //
 const liveReportsPage = () => {
   const liveReportsInfo = `
-      <div id="liveReports" class="container tab-pane active">
-        <br />
-        <h3>To be added... ⏳</h3>
+      <div id="liveReports" class="container-fluid tab-pane active">
         <div id="liveReportCards"><br/>
           <div id="chartContainer" style="height: 370px; width: 100%"></div>
         </div>
@@ -45,7 +43,7 @@ const liveReportsPage = () => {
     $(".tab-content").append(liveReportsInfo);
     $("#home").remove();
     $("#about").remove();
-    // coinGraph(); // TO BE IMPLEMENTED //
+    coinGraph(); // TO BE IMPLEMENTED //
   }
 };
 // -------------------------------------------------------------------------------------------------------------------------- //
@@ -54,7 +52,7 @@ const liveReportsPage = () => {
 // -------------------------------------------------------------------------------------------------------------------------- //
 const aboutPage = () => {
   const aboutInfo = `
-    <div id="about" class="container tab-pane active">
+    <div id="about" class="container-fluid tab-pane active">
       <br />
       <div class="aboutInfo">
         <h1 class="aboutInfo">Project-Crypto-API</h1>

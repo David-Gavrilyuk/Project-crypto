@@ -12,6 +12,7 @@ const checkCache = () => {
 
     let cacheName = "cachedCoins";
     let url = `https://api.coingecko.com/api/v3/coins/${coinsArray[index].id}`;
+    console.log(url);
 
     caches.open(cacheName).then((cache) => {
       cache.match(url).then((response) => {

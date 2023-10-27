@@ -1,5 +1,5 @@
 // Live Report coins array
-let liveReportCoins = [];
+let liveReportCoins = JSON.parse(localStorage.getItem("liveReportCoins")) || [];
 
 //----------------------------------------------------------------------------------------------------------------------------
 
@@ -12,15 +12,16 @@ const addToggleCoins = (toggle) => {
     const Checked = $(toggle).is(":checked");
     // Add or remove coin from liveReportsCoins array
     coinsArray[index].isChecked = Checked;
-    if (Checked) liveReportCoins.push(coinsArray[index]);
-    else {
-      const liveReportIndex = liveReportCoins.findIndex(
-        ({ id }) => id === coinsArray[index].id
-      );
+    if (Checked) {
+      liveReportCoins.push(coinsArray[index]);
+    } else {
+      const liveReportIndex = liveReportCoins.findIndex(({ id }) => id === coinsArray[index].id);
       if (liveReportIndex !== -1) liveReportCoins.splice(liveReportIndex, 1);
     }
 
-    if (liveReportCoins.length > 5) showModal();
+    liveReportCoins.length > 5
+      ? showModal() // Save the updated liveReportCoins to localStorage
+      : localStorage.setItem("liveReportCoins", JSON.stringify(liveReportCoins));
   });
 };
 // -------------------------------------------------------------------------------------------------------------------------- //
@@ -30,16 +31,10 @@ const addToggleCoins = (toggle) => {
 // -------------------------------------------------------------------------------------------------------------------------- //
 const showModal = () => {
   const liveReportCoinsList = liveReportCoins
-    .map((coin) => `<li>💰${coin.symbol}</li>`)
+    .slice(0, 5)
+    .map((coin) => `<li><img class="modalImage" src=${coin.image}/> ${coin.name}</li>`)
     .join("");
-  const selectCoinOptions = liveReportCoins
-    .map(
-      (coin, index) =>
-        `<option value="${index}">${index < 5 ? index + 1 : "Added"}: ${
-          coin.symbol
-        }</option>`
-    )
-    .join("");
+  const selectCoinOptions = liveReportCoins.map((coin, index) => `<option value="${index}">${coin.name}</option>`).join("");
 
   const reportsModal = `
       <div class="modal" id="reportsModal" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -56,11 +51,11 @@ const showModal = () => {
               <div id="modalCoins">
                 <div id="currentCoins">
                   <b>Current Live Report Coins:</b><br/>
-                  <ol>${liveReportCoinsList}</ol>
+                  <ul>${liveReportCoinsList}</ul>
                 </div>
                 <div id="addedCoin">
                   <b>New coin added:</b><br/> 
-                  <ul><li>💰${liveReportCoins[5].symbol}</li></ul>
+                  <ul><li><img class="modalImage" src=${liveReportCoins[5].image}/> ${liveReportCoins[5].name}</li></ul>
                 </div>  
               </div>          
             </div>
@@ -90,13 +85,15 @@ const showModal = () => {
 
 // -------------------------------------------------------------------------------------------------------------------------- //
 const cancelChangeCoin = () => {
-  const coinIndex = coinCards.findIndex(
-    (coin) => coin.id === liveReportCoins[5].id
-  );
+  const coinIndex = coinCards.findIndex((coin) => coin.id === liveReportCoins[5].id);
   if (coinIndex !== -1) {
     coinCards[coinIndex].isChecked = false;
     liveReportCoins.splice(5, 1);
   }
+
+  // Save the updated liveReportCoins to localStorage
+  localStorage.setItem("liveReportCoins", JSON.stringify(liveReportCoins));
+
   // re-inject coins to update the coin toggle state
   injectAllCoins();
 };
@@ -106,11 +103,26 @@ const cancelChangeCoin = () => {
 
 // -------------------------------------------------------------------------------------------------------------------------- //
 const changeCoin = () => {
-  const selected = liveReportCoins.splice($("#selectCoin").val(), 1)[0];
-  const coinIndex = coinCards.findIndex((coin) => coin.id === selected.id);
-  if (coinIndex !== -1) {
-    coinCards[coinIndex].isChecked = false;
+  const selectedCoinIndex = $("#selectCoin").val();
+
+  if (selectedCoinIndex >= 0 && selectedCoinIndex < liveReportCoins.length) {
+    const selected = liveReportCoins[selectedCoinIndex];
+    const coinIndex = coinCards.findIndex((coin) => coin.id === selected.id);
+
+    if (coinIndex !== -1) {
+      coinCards[coinIndex].isChecked = false;
+    }
+
+    // Replace the selected coin with the new coin
+    liveReportCoins[selectedCoinIndex] = liveReportCoins[5];
+
+    // Remove the new coin from index 5
+    liveReportCoins.splice(5, 1);
+
+    // Save the updated liveReportCoins to localStorage
+    localStorage.setItem("liveReportCoins", JSON.stringify(liveReportCoins));
+
+    // re-inject coins to update the coin toggle state
+    injectAllCoins();
   }
-  // re-inject coins to update the coin toggle state
-  injectAllCoins();
 };
