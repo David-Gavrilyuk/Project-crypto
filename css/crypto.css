@@ -5,12 +5,19 @@
   height: 200px;
 } */
 
+html,
+body {
+  background-color: whitesmoke;
+}
+
 #cryptoHeader {
   color: rgb(225, 0, 0);
   font-weight: bold;
   text-shadow: 5px 5px 5px #000;
   padding-left: 110px;
   padding-top: 120px;
+  position: absolute;
+  z-index: 1;
 }
 
 /* Parallax header */
@@ -38,7 +45,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; /* Place video behind overlay GIF */
+  z-index: 0; /* Place video behind overlay GIF */
 }
 
 /* Overlay container for the sticky GIF */
@@ -74,22 +81,21 @@
 @media (max-width: 480px) {
   #cryptoHeader {
     padding-left: 30px;
-    padding-top: 90px;
+    padding-top: 40px;
   }
   #overlayGif {
-    height: 24px;
+    height: 25px;
   }
   .overlay-container {
-    top: 110px;
+    top: 48px;
   }
   #parallaxHeader {
-    height: 140px;
+    height: 90px;
   }
 }
 
 /* navbar */
 .navbar {
-  margin-bottom: 10px;
 }
 
 /* tab navigation */

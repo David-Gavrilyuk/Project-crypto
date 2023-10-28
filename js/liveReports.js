@@ -28,12 +28,13 @@ const coinGraph = () => {
 
   var options = {
     zoomEnabled: true,
+    height: 640,
     backgroundColor: "whitesmoke",
     title: {
       text: liveReportCoins.length ? "Share Value of Coins" : "No coins added to the live reports",
     },
     axisX: {
-      title: "Time",
+      title: "",
     },
     axisY: {
       title: "Coin Value",

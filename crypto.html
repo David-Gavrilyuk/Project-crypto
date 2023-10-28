@@ -49,7 +49,7 @@ Remove unnecessary comments from functions / css / html -->
 
     <div class="navbarBox sticky-top">
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid m-1">
+        <div class="container-fluid m-1 justify-content-center justify-content-sm-between">
           <!-- Nav tabs -->
           <ul class="nav nav-pills" role="tablist">
             <li class="nav-item">
@@ -64,12 +64,12 @@ Remove unnecessary comments from functions / css / html -->
           </ul>
 
           <!-- Search -->
-          <form class="d-flex">
-            <div id="searchBox">
-              <input onkeydown="searchCard()" id="searchCoin" class="form-control me-2" type="text" placeholder="🔍 Search" />
-              <div id="searchError"></div>
-            </div>
-          </form>
+
+          <div id="searchBox" class="d-flex m-1">
+            <input id="searchCoin" class="form-control m-1" type="text" placeholder="🔍 Search Coins" />
+            <button id="searchBtn" class="btn btn-outline-success m-1" type="button">Search</button>
+            <div id="searchError"></div>
+          </div>
         </div>
       </nav>
     </div>

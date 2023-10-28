@@ -43,15 +43,13 @@ addAllCoins();
 
 // -------------------------------------------------------------------------------------------------------------------------- //
 const searchCard = () => {
-  $("#searchCoin")
-    .off("input")
-    .on("input", () => {
-      const searchCoin = $("#searchCoin").val().toLowerCase();
-      searchCoins = coinCards.filter(({ name }) => name.toLowerCase().includes(searchCoin));
-      // Inject searched coins
-      injectAllCoins();
-    });
+  const searchCoin = $("#searchCoin").val().toLowerCase();
+  searchCoins = coinCards.filter(({ name }) => name.toLowerCase().includes(searchCoin));
+  // Inject searched coins
+  injectAllCoins();
 };
+
+$("#searchBtn").on("click", searchCard);
 // -------------------------------------------------------------------------------------------------------------------------- //
 
 // Inject all coins fetched from API / Search bar
@@ -87,7 +85,7 @@ const injectAllCoins = () => {
     </div>`;
     })
     .join("");
-  $("#cardsCon").html(coinCard);
+  coinCard.length ? $("#cardsCon").html(coinCard) : $("#cardsCon").html("<h2>No Coins Found</h2>");
   checkCache();
   $(".checkbox").each(function () {
     addToggleCoins(this);
