@@ -23,7 +23,7 @@ const liveReportCoinsPrice = async () => {
 };
 
 const coinGraph = () => {
-  const color = ["red", "blue", "green", "yellow", "pink"];
+  const color = ["Red", "Green", "Blue", "Orange", "Purple"];
   const dataSeries = [];
 
   var options = {

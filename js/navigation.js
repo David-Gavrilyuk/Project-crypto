@@ -5,8 +5,8 @@
 // -------------------------------------------------------------------------------------------------------------------------- //
 const homePage = () => {
   const homeInfo = `
-    <div id="home" class="tab-pane active d-flex d-inline-flex flex-wrap align-items-center ">
-      <div id="cardsCon" class="container-fluid d-flex d-inline-flex flex-wrap mt-2" style="width: 92%;"></div>
+    <div id="home" class="tab-pane active">
+      <div id="cardsCon" class="container-fluid d-flex  flex-wrap mt-2";"></div>
     </div>
     `;
 

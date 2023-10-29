@@ -1,31 +1,24 @@
-/* Parallax header */
-/* #parallaxHeader {
-  background: url("../img/coin-shine1.gif") fixed center -350px / cover;
-  border: 1px solid #000;
-  height: 200px;
-} */
-
 html,
 body {
   background-color: whitesmoke;
 }
 
 #cryptoHeader {
-  color: rgb(225, 0, 0);
-  font-weight: bold;
-  text-shadow: 5px 5px 5px #000;
+  font-family: "Orbitron", sans-serif;
+  color: #ffd700;
+  text-shadow: 2px 2px 2px #800000;
+  font-size: 3.5rem;
   padding-left: 110px;
-  padding-top: 120px;
+  padding-top: 90px;
   position: absolute;
   z-index: 1;
 }
 
 /* Parallax header */
-/* Parallax header container */
 #parallaxHeader {
   position: relative;
   border: 1px solid #000;
-  height: 200px;
+  height: 170px;
   overflow: hidden;
 }
 
@@ -45,49 +38,55 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0; /* Place video behind overlay GIF */
+  z-index: 0;
 }
 
 /* Overlay container for the sticky GIF */
 .overlay-container {
   position: fixed;
-  top: 100px;
+  top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: top 0.3s;
 }
 
 /* Overlay GIF styling */
 #overlayGif {
   height: 100px;
-  object-fit: contain; /* You can adjust this as needed */
+  object-fit: contain;
 }
 
 /* Media query for smaller screens */
 @media (max-width: 868px) {
+  #parallaxHeader {
+    height: 130px;
+  }
   #cryptoHeader {
+    font-size: 3rem;
     padding-left: 80px;
-    padding-top: 131px;
+    padding-top: 60px;
   }
   #overlayGif {
     height: 70px;
   }
   .overlay-container {
-    top: 120px;
+    top: 55px;
   }
 }
 
 /* Media query for even smaller screens */
 @media (max-width: 480px) {
   #cryptoHeader {
+    font-size: 2rem;
     padding-left: 30px;
-    padding-top: 40px;
+    padding-top: 48px;
   }
   #overlayGif {
-    height: 25px;
+    height: 28px;
   }
   .overlay-container {
-    top: 48px;
+    top: 55px;
   }
   #parallaxHeader {
     height: 90px;
@@ -96,6 +95,10 @@ body {
 
 /* navbar */
 .navbar {
+}
+
+.nav-item {
+  font-weight: 600;
 }
 
 /* tab navigation */
@@ -142,6 +145,7 @@ h3.aboutInfo {
 .coinName {
   margin-left: 10px;
   margin-top: 7px;
+  font-weight: bolder;
 }
 
 .cardBox:hover {
@@ -149,8 +153,11 @@ h3.aboutInfo {
 }
 
 .card-body {
-  height: 40px;
+  height: 30px;
   margin-bottom: 25px;
+  font-weight: bolder;
+  font-size: smaller;
+  text-transform: uppercase;
 }
 
 .card-header {
@@ -165,8 +172,13 @@ h3.aboutInfo {
   display: none;
 }
 
+.moreData {
+  font-weight: 600;
+}
+
 #cardsCon {
   justify-content: center;
+  width: 92%;
 }
 
 /* get more info gif */
