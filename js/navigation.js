@@ -6,7 +6,7 @@
 const homePage = () => {
   const homeInfo = `
     <div id="home" class="tab-pane active">
-      <div id="cardsCon" class="container-fluid d-flex d-inline-flex flex-wrap width: 100%"></div>
+      <div id="cardsCon" class="container-fluid d-flex  flex-wrap mt-2";"></div>
     </div>
     `;
 
@@ -28,12 +28,13 @@ const homePage = () => {
 // -------------------------------------------------------------------------------------------------------------------------- //
 const liveReportsPage = () => {
   const liveReportsInfo = `
-      <div id="liveReports" class="container-fluid tab-pane active">
-        <div id="liveReportCards"><br/>
-          <div id="chartContainer" style="height: 370px; width: 100%"></div>
-        </div>
-      </div>
-    `;
+  <div id="liveReports" class="tab-pane active" style="width: 100%;>
+    <div id="liveReportCards">
+      <div id="chartContainer"></div>
+    </div>
+  </div>
+
+`;
 
   // Check if the #liveReports element exists in the .tab-content element
   const liveReportsElement = $(".tab-content").find("#liveReports");

@@ -1,5 +1,4 @@
 <!-- TO DO:
-1. on mobile screen fix the search bar to be centered and add margin top from tabs
 2. fix live report coins double click toggle on when coin initially added
 3. retain live reports data on page refresh
 4. clear search bar on page refresh
@@ -8,7 +7,9 @@ Work on the design of the website until satisfied
 
 Change about page to show all the functions of the website instead of the current picture etc
 
-Remove unnecessary comments from functions / css / html -->
+Remove unnecessary comments from functions / css / html
+
+https://thelukewest.wordpress.com/2016/11/07/pixel-art-animated-coin/ -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,39 +38,39 @@ Remove unnecessary comments from functions / css / html -->
   <body>
     <div id="parallaxHeader">
       <div class="parallax-container">
-        <h1 id="cryptoHeader">Cryptic Coins📊</h1>
+        <h1 id="cryptoHeader">Cryptic Coins</h1>
         <video autoplay loop muted playsinline>
-          <source src="../img/pexels_videos_2646392 (1080p).mp4" type="video/mp4" />
+          <source src="../img/Untitled design.mp4" type="video/mp4" />
         </video>
-        <div class="overlay-container">
+        <div id="overlay-container" class="overlay-container">
           <img src="../img/coin-shine1.gif" alt="Overlay GIF" id="overlayGif" />
         </div>
       </div>
     </div>
 
-    <div class="navbarBox sticky-top">
+    <div id="navbarBox" class="navbarBox sticky-top">
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid m-1">
+        <div class="container-fluid m-1 justify-content-center justify-content-sm-between">
           <!-- Nav tabs -->
           <ul class="nav nav-pills" role="tablist">
-            <li class="nav-item">
+            <li class="nav-item navbar">
               <a onclick="homePage()" class="nav-link active" data-bs-toggle="tab" href="#home">🏠 Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navbar">
               <a onclick="liveReportsPage()" class="nav-link" data-bs-toggle="tab" href="#liveReports">📈 Live Reports</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navbar">
               <a onclick="aboutPage()" class="nav-link" data-bs-toggle="tab" href="#about">💡 About</a>
             </li>
           </ul>
 
           <!-- Search -->
-          <form class="d-flex">
-            <div id="searchBox">
-              <input onkeydown="searchCard()" id="searchCoin" class="form-control me-2" type="text" placeholder="🔍 Search" />
-              <div id="searchError"></div>
-            </div>
-          </form>
+
+          <div id="searchBox" class="d-flex m-1">
+            <input id="searchCoin" class="form-control m-1" type="text" placeholder="🔍 Search Coins" />
+            <button id="searchBtn" class="btn btn-outline-success m-1" type="button">Search</button>
+            <div id="searchError"></div>
+          </div>
         </div>
       </nav>
     </div>
