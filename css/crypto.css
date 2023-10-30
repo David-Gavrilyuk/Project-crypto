@@ -44,53 +44,19 @@ body {
 /* Overlay container for the sticky GIF */
 .overlay-container {
   position: fixed;
-  top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: top 0.3s;
+  cursor: pointer;
+  z-index: 1;
+  top: 70px;
 }
 
 /* Overlay GIF styling */
 #overlayGif {
   height: 100px;
   object-fit: contain;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 868px) {
-  #parallaxHeader {
-    height: 130px;
-  }
-  #cryptoHeader {
-    font-size: 3rem;
-    padding-left: 80px;
-    padding-top: 60px;
-  }
-  #overlayGif {
-    height: 70px;
-  }
-  .overlay-container {
-    top: 55px;
-  }
-}
-
-/* Media query for even smaller screens */
-@media (max-width: 480px) {
-  #cryptoHeader {
-    font-size: 2rem;
-    padding-left: 30px;
-    padding-top: 48px;
-  }
-  #overlayGif {
-    height: 28px;
-  }
-  .overlay-container {
-    top: 55px;
-  }
-  #parallaxHeader {
-    height: 90px;
-  }
 }
 
 /* navbar */
@@ -109,19 +75,14 @@ body {
 }
 
 /* About tab */
+#about {
+  text-align: center;
+}
+
 .aboutInfo,
 h3 {
   font-weight: bold;
   text-align: center;
-}
-
-.aboutInfo > h1.aboutInfo,
-h3.aboutInfo {
-  text-decoration: underline double;
-}
-
-#aboutIMG {
-  height: 400px;
 }
 
 /* Coin cards */
@@ -152,7 +113,7 @@ h3.aboutInfo {
   box-shadow: 0 0 10px #000;
 }
 
-.card-body {
+.cardSymbol {
   height: 30px;
   margin-bottom: 25px;
   font-weight: bolder;
@@ -210,4 +171,78 @@ h3.aboutInfo {
 
 #btn {
   margin-left: auto;
+}
+
+.aboutInfoImg {
+  height: 300px;
+  width: 900px;
+}
+.aboutInfoToggle {
+  overflow: hidden;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 868px) {
+  #parallaxHeader {
+    height: 130px;
+  }
+  #cryptoHeader {
+    font-size: 3rem;
+    padding-left: 80px;
+    padding-top: 60px;
+  }
+  #overlayGif {
+    height: 70px;
+  }
+  .overlay-container {
+    top: 55px;
+  }
+  .aboutInfoImg {
+    height: 300px;
+    width: 600px;
+  }
+  .aboutInfoToggle {
+    height: 600px;
+    overflow: hidden;
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  #cryptoHeader {
+    font-size: 2rem;
+    padding-left: 30px;
+    padding-top: 48px;
+  }
+  #overlayGif {
+    height: 28px;
+  }
+  .overlay-container {
+    top: 55px;
+    left: -1px;
+  }
+  #parallaxHeader {
+    height: 90px;
+  }
+  .aboutInfoImg {
+    height: 200px;
+    width: 300px;
+  }
+  .aboutInfoToggle {
+    height: 700px;
+    overflow: hidden;
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 360px) {
+  .nav-item {
+    width: 110px;
+  }
+  #overlayGif {
+    height: 20px;
+  }
+  .overlay-container {
+    left: -1px;
+  }
 }

@@ -15,7 +15,7 @@ let searchCoins;
 // Injected coins array (undefined)
 let coinsArray;
 
-const loadingGif = `<img id="loading" src="img/coin-shine1.gif">`;
+const loadingGif = `<img id="loading" src="img/coinSpin.gif">`;
 // -------------------------------------------------------------------------------------------------------------------------- //
 
 // Fetch coins from the API
@@ -75,7 +75,7 @@ const injectAllCoins = () => {
             <input id="coin-${id}" class="form-check-input checkbox" type="checkbox" ${isChecked ? "checked" : ""} />
           </div>
         </div>
-        <div class="card-body">${symbol}</div>
+        <div class="card-body cardSymbol">${symbol}</div>
         <div class="card-footer bg-transparent border-0">
           <button class="btn btn-primary moreInfo" type="button">More Info 📋</button><span class="loadingAnim"></span>
           <div class="coinInfo">
@@ -135,28 +135,3 @@ const getMoreInfo = async (coinInfo, url, cacheName) => {
   }
 };
 // -------------------------------------------------------------------------------------------------------------------------- //
-
-// Coin GIF scrolling
-const overlayGif = document.getElementById("overlayGif");
-const overlayContainer = document.getElementById("overlay-container");
-const parallaxHeader = document.getElementById("parallaxHeader");
-
-let navbarHeight = 0;
-let originalPosition = 0;
-
-function updateNavbarHeight() {
-  navbarHeight = document.getElementById("navbarBox").offsetHeight;
-  originalPosition = overlayContainer.offsetTop;
-}
-
-updateNavbarHeight();
-
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
-  const stoppingPoint = 160;
-
-  overlayContainer.style.top = `${Math.min(stoppingPoint, Math.max(navbarHeight, scrollPosition))}px`;
-  if (scrollPosition < navbarHeight) overlayContainer.style.top = `${originalPosition}px`;
-});
-
-window.addEventListener("resize", updateNavbarHeight);
