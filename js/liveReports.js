@@ -4,7 +4,6 @@ let dataSeriesVisibility = JSON.parse(localStorage.getItem("dataSeriesVisibility
 let interval = null; // Initialize the interval variable to null.
 
 const liveReportCoinsPrice = async () => {
-  console.log(liveReportCoins);
   const currentTime = new Date().toLocaleTimeString();
   const pricesAndTimes = await Promise.all(
     liveReportCoins.map(async ({ id }) => {

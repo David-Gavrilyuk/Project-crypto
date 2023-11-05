@@ -6,7 +6,7 @@
 const homePage = () => {
   const homeInfo = `
     <div id="home" class="tab-pane active">
-      <div id="cardsCon" class="container-fluid d-flex  flex-wrap mt-2";"></div>
+      <div id="cardsCon" class="container-fluid mt-2";"></div>
     </div>
     `;
 

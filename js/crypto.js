@@ -67,21 +67,23 @@ const injectAllCoins = () => {
     .map(({ id, symbol, name, image, isChecked }) => {
       return `
     <div class="cardBox">
-      <div id="${symbol}" class="card col-* h-100">
-        <div class="card-header bg-transparent border-0 d-inline-flex">
-          <img class="cardImage" src="${image}"/>
-          <div class="coinName">${name}</div>
-          <div class="form-check form-switch ms-auto">
-            <input id="coin-${id}" class="form-check-input checkbox" type="checkbox" ${isChecked ? "checked" : ""} />
+      <div class="cardContainer">
+        <div id="${symbol}" class="card col-*">
+          <div class="card-header bg-transparent border-0 d-inline-flex">
+            <img class="cardImage" src="${image}"/>
+            <div class="coinName">${name}</div>
+            <div class="form-check form-switch ms-auto">
+              <input id="coin-${id}" class="form-check-input checkbox" type="checkbox" ${isChecked ? "checked" : ""} />
+            </div>
+          </div>
+          <div class="card-body cardSymbol">${symbol}</div>
+          <div class="card-footer bg-transparent border-0">
+            <button class="btn btn-primary moreInfo" type="button">More Info 📋</button><span class="loadingAnim"></span>
+            <div class="coinInfo">
+            </div>
           </div>
         </div>
-        <div class="card-body cardSymbol">${symbol}</div>
-        <div class="card-footer bg-transparent border-0">
-          <button class="btn btn-primary moreInfo" type="button">More Info 📋</button><span class="loadingAnim"></span>
-          <div class="coinInfo">
-          </div>
-        </div>
-      </div>
+      </div>  
     </div>`;
     })
     .join("");
@@ -105,13 +107,12 @@ const getMoreInfo = async (coinInfo, url, cacheName) => {
     $(coinInfo).siblings(".loadingAnim").html(progressBar);
 
     try {
-      console.log(url);
       moreInfo = await $.ajax({
         url: url,
         beforeSend: () => progressBar.show(),
         complete: () => progressBar.hide(1000),
       });
-      console.log("more info");
+
       // Save fetched information and inject to card + toggle div
       const cardInfo =
         moreInfo.market_data.current_price.usd === undefined || moreInfo.market_data.current_price.usd === null

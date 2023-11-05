@@ -12,7 +12,6 @@ const checkCache = () => {
 
     let cacheName = "cachedCoins";
     let url = `https://api.coingecko.com/api/v3/coins/${coinsArray[index].id}`;
-    console.log(url);
 
     caches.open(cacheName).then((cache) => {
       cache.match(url).then((response) => {
@@ -21,10 +20,8 @@ const checkCache = () => {
             const currentPrice = json.currentPrice;
             coinInfo.html(currentPrice);
             coinInfo.toggle(1000);
-            console.log("cached data injected!!!!");
           });
         } else {
-          console.log("no cached data available");
           getMoreInfo(coinInfo, url, cacheName);
         }
       });
@@ -44,7 +41,6 @@ const setCache = (url, coinInfo, cacheName, cardInfo) => {
       headers: { "Content-Type": "application/json" },
     });
     cache.put(url, res);
-    console.log("Data cached successfully ");
 
     // Delete this cache after 2 minutes
     setTimeout(() => {
