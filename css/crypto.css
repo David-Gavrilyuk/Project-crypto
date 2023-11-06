@@ -85,18 +85,23 @@ h3 {
 
 /* Coin cards */
 #cardsCon {
-  display: flex;
-  flex-wrap: wrap;
+  columns: 5;
+  margin: 20px auto;
+  column-gap: 40px;
+  width: 90%;
 }
+
 .card {
-  width: 320px;
+  max-width: 100%;
 }
 
 .cardBox {
   border: 2px solid black;
   border-radius: 8px;
   height: 100%;
-  margin: 10px;
+  width: 100%;
+  margin-bottom: 40px;
+  break-inside: avoid;
 }
 
 .cardImage {
@@ -135,11 +140,6 @@ h3 {
 
 .moreData {
   font-weight: 600;
-}
-
-#cardsCon {
-  justify-content: center;
-  width: 92%;
 }
 
 /* get more info gif */
