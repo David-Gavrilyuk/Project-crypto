@@ -1,10 +1,6 @@
 caches.delete("cachedCoins"); // delete cache on page load
 
-// -------------------------------------------------------------------------------------------------------------------------- //
-
 // Check if cache exists before making a new API request via getMoreInfo
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const checkCache = () => {
   $(".moreInfo").click(async function () {
     let index = $(this).index(".moreInfo");
@@ -28,11 +24,8 @@ const checkCache = () => {
     });
   });
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Create Cache
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const setCache = (url, coinInfo, cacheName, cardInfo) => {
   caches.open(cacheName).then((cache) => {
     const currentPrice = cardInfo;

@@ -1,8 +1,4 @@
-// -------------------------------------------------------------------------------------------------------------------------- //
-
 // Home page injection
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const homePage = () => {
   const homeInfo = `
     <div id="home" class="tab-pane active">
@@ -21,11 +17,8 @@ const homePage = () => {
     $("#about").remove();
   }
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Live Reports page injection
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const liveReportsPage = () => {
   const liveReportsInfo = `
   <div id="liveReports" class="tab-pane active" style="width: 100%;>
@@ -47,11 +40,8 @@ const liveReportsPage = () => {
     coinGraph(); // TO BE IMPLEMENTED //
   }
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // About page injection
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const aboutPage = () => {
   const aboutInfo = `
     <div id="about" class="container-fluid tab-pane active">
@@ -89,7 +79,7 @@ const aboutPage = () => {
                 Stay informed and make informed investment decisions.
                 <br/>
                 <br/>
-                <img class="aboutInfoImg" src="/img/aboutHomePage.PNG"/>
+                <img class="aboutInfoImg" src="/img/aboutHomePage.png"/>
                 <br/>
               </div>
             </div>

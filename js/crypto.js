@@ -1,8 +1,3 @@
-/*
-TODO:
-Implement live reports graph
-*/
-
 // All coins URL
 const allCoinsURL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc";
 
@@ -16,11 +11,8 @@ let searchCoins;
 let coinsArray;
 
 const loadingGif = `<img id="loading" src="img/coinSpin.gif">`;
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Fetch coins from the API
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const addAllCoins = async () => {
   // Create an array with specified number of coins
   try {
@@ -37,11 +29,8 @@ const addAllCoins = async () => {
   homePage();
 };
 addAllCoins();
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Coin search bar
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const searchCard = () => {
   const searchCoin = $("#searchCoin").val().toLowerCase();
   searchCoins = coinCards.filter(({ name }) => name.toLowerCase().includes(searchCoin));
@@ -50,11 +39,8 @@ const searchCard = () => {
 };
 
 $("#searchBtn").on("click", searchCard);
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Inject all coins fetched from API / Search bar
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const injectAllCoins = () => {
   // Proceed with initial page load array / searched coins array
   if (searchCoins === undefined) {
@@ -93,11 +79,8 @@ const injectAllCoins = () => {
     addToggleCoins(this);
   });
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Get More Info from API
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const getMoreInfo = async (coinInfo, url, cacheName) => {
   let moreInfo = null;
   const hasContent = coinInfo.html().trim().length > 0;
@@ -135,4 +118,3 @@ const getMoreInfo = async (coinInfo, url, cacheName) => {
     coinInfo.toggle(1000);
   }
 };
-// -------------------------------------------------------------------------------------------------------------------------- //

@@ -1,11 +1,7 @@
 // Live Report coins array
 let liveReportCoins = JSON.parse(localStorage.getItem("liveReportCoins")) || [];
 
-//----------------------------------------------------------------------------------------------------------------------------
-
 // Add to Live Reports toggle function
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const addToggleCoins = (toggle) => {
   $(toggle).change(() => {
     const index = $(toggle).index(".checkbox");
@@ -24,11 +20,8 @@ const addToggleCoins = (toggle) => {
       : localStorage.setItem("liveReportCoins", JSON.stringify(liveReportCoins));
   });
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Show Modal when more than 5 coins added to Live Reports
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const showModal = () => {
   const liveReportCoinsList = liveReportCoins
     .slice(0, 5)
@@ -79,11 +72,8 @@ const showModal = () => {
   $("#modalContainer").html(reportsModal);
   $("#reportsModal").modal("show");
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Modal canceled function
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const cancelChangeCoin = () => {
   const coinIndex = coinCards.findIndex((coin) => coin.id === liveReportCoins[5].id);
   if (coinIndex !== -1) {
@@ -97,11 +87,8 @@ const cancelChangeCoin = () => {
   // re-inject coins to update the coin toggle state
   injectAllCoins();
 };
-// -------------------------------------------------------------------------------------------------------------------------- //
 
 // Modal coin changed function
-
-// -------------------------------------------------------------------------------------------------------------------------- //
 const changeCoin = () => {
   const selectedCoinIndex = $("#selectCoin").val();
 
