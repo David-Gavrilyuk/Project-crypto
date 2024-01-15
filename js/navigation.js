@@ -37,7 +37,7 @@ const liveReportsPage = () => {
     $(".tab-content").append(liveReportsInfo);
     $("#home").remove();
     $("#about").remove();
-    coinGraph(); // TO BE IMPLEMENTED //
+    coinGraph();
   }
 };
 
@@ -169,10 +169,10 @@ const aboutPage = () => {
   }
 
   // Scroll to the clicked info section
-  $(document).ready(function () {
-    $('.card-header a[data-bs-toggle="collapse"]').click(function (e) {
+  $(document).ready(() => {
+    $('.card-header a[data-bs-toggle="collapse"]').click((e) => {
       e.preventDefault();
-      var targetId = $(this).attr("href");
+      let targetId = $(this).attr("href");
       $("html, body").animate({ scrollTop: 250 }, 1000);
     });
   });
